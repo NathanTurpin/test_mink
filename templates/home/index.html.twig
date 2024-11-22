@@ -4,32 +4,30 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
 
-	<div class="example-wrapper">
-		<h1 class="text-3xl font-bold underline">
-			Hello world!
-		</h1>
+	<main class="mt-20">
+		<div class="container mx-auto px-4 py-12">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="text-center">
+					<div class="w-36 h-36 bg-gray-700  mx-auto"></div>
+					<h2 class="text-xl font-semibold mt-4">Heading</h2>
+					<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolores velit, quo vitae harum quis dignissimos praesentium quia error dolor!</p>
+					<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
+				</div>
+				<div class="text-center">
+					<div class="w-36 h-36 bg-gray-700 mx-auto"></div>
+					<h2 class="text-xl font-semibold mt-4">Heading</h2>
+					<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolores velit, quo vitae harum quis dignissimos praesentium quia error dolor!</p>
+					<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
+				</div>
+				<div class="text-center">
+					<div class="w-36 h-36 bg-gray-700  mx-auto"></div>
+					<h2 class="text-xl font-semibold mt-4">Heading</h2>
+					<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolores velit, quo vitae harum quis dignissimos praesentium quia error dolor!</p>
+					<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
+				</div>
+			</div>
+		</div>
+	</main>
 
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>C:/MAMP/htdocs/test_mink/src/Controller/HomeController.php</code>
-			</li>
-			<li>Your template at
-				<code>C:/MAMP/htdocs/test_mink/templates/home/index.html.twig</code>
-			</li>
-		</ul>
-	</div>
 {% endblock %}
