@@ -60,21 +60,19 @@ class CreateUserCommand extends Command
             $io->listing($roles);
         }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $output->writeln('<error>Invalid email address.</error>');
-
+        try {
+            $this->userManager->createUser($email, $password, $roles);
+            $output->writeln('<info>User successfully created!</info>');
+        } catch (\InvalidArgumentException $e) {
+            $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
+        } catch (\LogicException $e) {
+            $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
+        } catch (\Exception $e) {
+            $output->writeln('<error>Something went wrong: ' . $e->getMessage() . '</error>');
             return Command::FAILURE;
         }
-
-        if ($userRepository->findOneBy(['email' => $email])) {
-            $output->writeln('<error>User with this email already exists.</error>');
-
-            return Command::FAILURE;
-        }
-
-        $this->userManager->createUser($email, $password, $roles);
-
-        $output->writeln('<info>User successfully created!</info>');
 
         return Command::SUCCESS;
     }
