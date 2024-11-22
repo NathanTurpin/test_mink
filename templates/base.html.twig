@@ -10,15 +10,22 @@
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
-
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-			{% block importmap %}
-				{{ importmap('app') }}
-			{% endblock %}
-		{% endblock %}
 	</head>
-	<body>
-		{% block body %}{% endblock %}
-	</body>
-</html>
+	<body class="bg-gray-100 flex flex-col min-h-screen">
+		<header>
+			{% block header %}
+				{% include 'partials/nav.html.twig' %}
+			{% endblock %}
+		</header>
+		<main class="flex-grow"> {% block body %}{% endblock %}
+			</main>
+			<footer>
+				{% block footer %}
+					{% include 'partials/footer.html.twig' %}
+				{%  endblock %}
+			</footer>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>
