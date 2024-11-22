@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Service\User\UserManager;
 
 #[AsCommand(
     name: 'create-user',
@@ -20,13 +20,13 @@ class CreateUserCommand extends Command
 {
 
     private EntityManagerInterface $entityManager;
-    private UserPasswordHasherInterface $passwordHasher;
+    private UserManager $userManager;
 
-    public function __construct(EntityManagerInterface $entityManager,  UserPasswordHasherInterface $passwordHasher)
+    public function __construct(EntityManagerInterface $entityManager, UserManager $userManager)
     {
         parent::__construct();
         $this->entityManager = $entityManager;
-        $this->passwordHasher = $passwordHasher;
+        $this->userManager = $userManager;
     }
 
     protected function configure(): void
@@ -45,6 +45,7 @@ class CreateUserCommand extends Command
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
         $roles = $input->getArgument('roles');
+        $userRepository = $this->entityManager->getRepository(User::class);
 
         if ($email) {
             $io->note(sprintf('You passed an email: %s', $email));
@@ -65,25 +66,13 @@ class CreateUserCommand extends Command
             return Command::FAILURE;
         }
 
-        $userRepository = $this->entityManager->getRepository(User::class);
-
         if ($userRepository->findOneBy(['email' => $email])) {
             $output->writeln('<error>User with this email already exists.</error>');
 
             return Command::FAILURE;
         }
 
-
-
-        $user = new User();
-        $user->setEmail($email);
-        $user->setRoles($roles);
-
-        $hashedPassword = $this->passwordHasher->hashPassword($user, $password);
-        $user->setPassword($hashedPassword);
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
+        $this->userManager->createUser($email, $password, $roles);
 
         $output->writeln('<info>User successfully created!</info>');
 
