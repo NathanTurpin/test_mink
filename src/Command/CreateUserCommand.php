@@ -2,8 +2,6 @@
 
 namespace App\Command;
 
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,13 +17,11 @@ use App\Service\User\UserManager;
 class CreateUserCommand extends Command
 {
 
-    private EntityManagerInterface $entityManager;
     private UserManager $userManager;
 
-    public function __construct(EntityManagerInterface $entityManager, UserManager $userManager)
+    public function __construct(UserManager $userManager)
     {
         parent::__construct();
-        $this->entityManager = $entityManager;
         $this->userManager = $userManager;
     }
 
@@ -45,7 +41,6 @@ class CreateUserCommand extends Command
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
         $roles = $input->getArgument('roles');
-        $userRepository = $this->entityManager->getRepository(User::class);
 
         if ($email) {
             $io->note(sprintf('You passed an email: %s', $email));
