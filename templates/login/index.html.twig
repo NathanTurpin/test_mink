@@ -4,24 +4,35 @@
 {% endblock %}
 
 {% block body %}
+	<div class="bg-gray-100 flex items-center justify-center ">
+		<div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+			<h1 class="text-2xl font-extrabold text-gray-800 text-center mb-6">Connexion</h1>
 
+			{% if error %}
+				<div class="mb-4 p-3 bg-red-100 text-red-700 text-sm rounded">
+					{{ error.messageKey|trans(error.messageData, 'security') }}
+				</div>
+			{% endif %}
 
-	<div class="container">
-		{% if error %}
-			<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-		{% endif %}
+			<form
+				action="{{ path('app_login') }}" method="post" class="space-y-4">
+				<!-- Email -->
+				<div>
+					<label for="username" class="block text-sm font-medium text-gray-600">Email</label>
+					<input type="text" id="username" name="_username" value="{{ last_username }}" required class="w-full mt-1 p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-indigo-500">
+				</div>
 
-		// rien a mapper, reco par symfo
-		<form action="{{ path('app_login') }}" method="post">
-			<label for="username">Email:</label>
-			<input type="text" id="username" name="_username" value="{{ last_username }}" required>
+				<!-- Password -->
+				<div>
+					<label for="password" class="block text-sm font-medium text-gray-600">Mot de passe</label>
+					<input type="password" id="password" name="_password" required class="w-full mt-1 p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-indigo-500">
+				</div>
 
-			<label for="password">Password:</label>
-			<input type="password" id="password" name="_password" required>
-
-			<input type="hidden" name="_target_path" value="/admin">
-
-			<button type="submit">login</button>
-		</form>
+				<!-- Submit Button -->
+				<button type="submit" class="w-full bg-indigo-500 text-white py-3 rounded-lg font-semibold hover:bg-indigo-600 transition duration-200 focus:outline-none focus:ring focus:ring-indigo-400">
+					Connexion
+				</button>
+			</form>
+		</div>
 	</div>
 {% endblock %}

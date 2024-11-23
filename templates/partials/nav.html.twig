@@ -1,22 +1,43 @@
 <nav class="bg-white border-b border-gray-200 shadow-sm">
 	<div class="container mx-auto px-4 flex items-center justify-between py-4 gap-3">
 
-		<a href="#" class="text-gray-800 text-xl font-semibold whitespace-nowrap">Test Mink</a>
+		<a href="{{ path('app_home') }}" class="text-gray-800 text-xl font-semibold whitespace-nowrap">Test Mink</a>
 
 		<div class=" lg:flex lg:items-center lg:justify-between w-full">
 			<ul class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6">
 				<li>
-					<a href="#" class="text-gray-700 hover:text-gray-900 transition duration-300">Home</a>
+					<a href="{{ path('app_home') }}" class="text-gray-700 hover:text-gray-900 transition duration-300">Home</a>
 				</li>
 
 			</ul>
 
-			<div class="flex space-x-4 mt-4 lg:mt-0">
+			<div class="flex space-x-6 mt-4 lg:mt-0 items-center">
+
+				{% if app.user %}
+					<a href="{{ path('app_admin') }}" class="flex items-center text-gray-600 hover:text-gray-900 transition duration-300 space-x-2">
+						<span>{{ app.user.email }}</span>
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+							<circle cx="8.5" cy="7" r="4"/>
+							<path d="M20 8v6M23 11h-6"/>
+						</svg>
+					</a>
+				{% else %}
+					<a href="{{ path('app_login') }}" class="text-gray-600 hover:text-gray-900 transition duration-300">
+						<svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+							<circle cx="8.5" cy="7" r="4"/>
+							<path d="M20 8v6M23 11h-6"/>
+						</svg>
+					</a>
+
+				{% endif %}
 				<a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300">
-					<i data-feather="user">USER</i>
-				</a>
-				<a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300">
-					<i data-feather="shopping-cart">CART</i>
+					<svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M3 3h18l-2 13H5L3 3z"/>
+						<circle cx="9" cy="20" r="2"/>
+						<circle cx="15" cy="20" r="2"/>
+					</svg>
 				</a>
 			</div>
 		</div>
