@@ -27,9 +27,16 @@ class Type
     #[ORM\OneToMany(targetEntity: Race::class, mappedBy: 'type')]
     private Collection $races;
 
+    /**
+     * @var Collection<int, Animal>
+     */
+    #[ORM\OneToMany(targetEntity: Animal::class, mappedBy: 'type')]
+    private Collection $animals;
+
     public function __construct()
     {
         $this->races = new ArrayCollection();
+        $this->animals = new ArrayCollection();
     }
 
     public function __toString()
@@ -90,6 +97,36 @@ class Type
             // set the owning side to null (unless already changed)
             if ($race->getType() === $this) {
                 $race->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Animal>
+     */
+    public function getAnimals(): Collection
+    {
+        return $this->animals;
+    }
+
+    public function addAnimal(Animal $animal): static
+    {
+        if (!$this->animals->contains($animal)) {
+            $this->animals->add($animal);
+            $animal->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimal(Animal $animal): static
+    {
+        if ($this->animals->removeElement($animal)) {
+            // set the owning side to null (unless already changed)
+            if ($animal->getType() === $this) {
+                $animal->setType(null);
             }
         }
 

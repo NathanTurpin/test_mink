@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Animal;
 use App\Entity\Race;
 use App\Entity\Type;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -18,7 +19,7 @@ class DashboardController extends AbstractDashboardController
     {
 
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(TypeCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(AnimalCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -32,5 +33,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Type', 'fas fa-list', Type::class);
         yield MenuItem::linkToCrud('Race', 'fas fa-list', Race::class);
+        yield MenuItem::linkToCrud('Animal', 'fas fa-list', Animal::class);
     }
 }
