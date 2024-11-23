@@ -14,7 +14,7 @@ final class Version20241123150227 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Change image to string';
     }
 
     public function up(Schema $schema): void

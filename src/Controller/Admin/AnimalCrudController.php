@@ -41,7 +41,7 @@ class AnimalCrudController extends AbstractCrudController
                 '10%' => '10',
                 '20%' => '20'
             ]),
-            ImageField::new('images', "Images")->setUploadDir("/public/uploads/images")
+            ImageField::new('images', "Images")->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')->setBasePath('/uploads/images')->setUploadDir("/public/uploads/images")
 
         ];
     }
