@@ -11,15 +11,15 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 	</head>
-	<body class="bg-gray-100 flex flex-col min-h-screen">
-		<header>
+	<body class="bg-gray-100 flex flex-col min-h-screen relative">
+		<header class="  fixed w-full z-10 h-16">
 			{% block header %}
 				{% include 'partials/nav.html.twig' %}
 			{% endblock %}
 		</header>
-		<main class="flex-grow"> {% block body %}{% endblock %}
+		<main class="flex-grow pt-16"> {% block body %}{% endblock %}
 			</main>
-			<footer>
+			<footer class="bg-white border-b border-gray-700 py-8">
 				{% block footer %}
 					{% include 'partials/footer.html.twig' %}
 				{%  endblock %}
