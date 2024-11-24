@@ -26,6 +26,11 @@
 				<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
 			</div>
 		</div>
+		<div data-controller="clipboard">
+			PIN:
+			<input data-clipboard-target="source" type="text" value="3737" readonly>
+			<button data-action="clipboard#copy">Copy to Clipboard</button>
+		</div>
+		<div {{ vue_component('Hello', { 'name': 'NATHAN' } ) }}></div>
 	</div>
-
 {% endblock %}
