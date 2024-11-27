@@ -4,33 +4,6 @@
 {% endblock %}
 
 {% block body %}
+	{% include 'animal/index.html.twig'  with {'animals': animals}  %}
 
-	<div class="container mx-auto px-4 py-12">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-			<div class="text-center">
-				<div class="w-36 h-36 bg-gray-700  mx-auto"></div>
-				<h2 class="text-xl font-semibold mt-4">Heading</h2>
-				<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolores velit, quo vitae harum quis dignissimos praesentium quia error dolor!</p>
-				<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
-			</div>
-			<div class="text-center">
-				<div class="w-36 h-36 bg-gray-700 mx-auto"></div>
-				<h2 class="text-xl font-semibold mt-4">Heading</h2>
-				<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolores velit, quo vitae harum quis dignissimos praesentium quia error dolor!</p>
-				<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
-			</div>
-			<div class="text-center">
-				<div class="w-36 h-36 bg-gray-700  mx-auto"></div>
-				<h2 class="text-xl font-semibold mt-4">Heading</h2>
-				<p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta dolores velit, quo vitae harum quis dignissimos praesentium quia error dolor!</p>
-				<a href="#" class="text-blue-500 mt-4 block">View details &raquo;</a>
-			</div>
-		</div>
-		<div data-controller="clipboard">
-			PIN:
-			<input data-clipboard-target="source" type="text" value="3737" readonly>
-			<button data-action="clipboard#copy">Copy to Clipboard</button>
-		</div>
-		<div {{ vue_component('Hello', { 'name': 'NATHAN' } ) }}></div>
-	</div>
 {% endblock %}
