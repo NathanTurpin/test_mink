@@ -21,7 +21,7 @@
 <script setup>
 import Card from "../component/Card.vue";
 import AnimalFilter from "../component/AnimalFilter.vue";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
   animals: Array,
@@ -29,16 +29,9 @@ const props = defineProps({
   races: Array,
 });
 
-onMounted(() => {
-  // console.log(props.animals);
-  // console.log(props.types);
-  // console.log(props.races);
-});
 const filterdAnimals = ref(props.animals);
 
 const updateFilteredAnimals = (filtered) => {
-  console.log(filtered);
-
   filterdAnimals.value = filtered;
 };
 </script>
