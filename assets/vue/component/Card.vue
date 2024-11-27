@@ -14,13 +14,18 @@
 
     <div class="p-4">
       <h2 class="text-xl font-semibold text-gray-800">{{ animal.name }}</h2>
-      <p class="mt-2 text-gray-600">{{ animal.description }}</p>
-
+      <p
+        class="mt-2 text-gray-600 line-clamp-2"
+        v-html="sanitizedDescription"
+      ></p>
       <p class="text-lg font-semibold text-green-600 mt-4">
-        {{ animal.price }}€
+        {{ calculatePriceWithVAT(animal.price, animal.tva) }}
       </p>
-
-      <p class="text-sm text-gray-500">Âge: {{ animal.age }} ans</p>
+      <div class="flex gap-2">
+        <p class="text-sm text-gray-500">Âge: {{ animal.age }} ans |</p>
+        <p class="text-sm text-gray-500">Type: {{ animal.type.name }} |</p>
+        <p class="text-sm text-gray-500">Race: {{ animal.race.name }}</p>
+      </div>
 
       <a href="#" class="text-blue-500 mt-4 inline-block"
         >Voir les détails &raquo;</a
@@ -31,11 +36,20 @@
 
 
 <script setup>
+import { computed } from "vue";
+import DOMPurify from "dompurify";
+import { priceMixin } from "../mixin/priceMixin";
 const props = defineProps({
   animal: Object,
 });
+
+defineOptions({
+  mixins: [priceMixin],
+});
+
+const sanitizedDescription = computed(() => {
+  // delete all dangerous html attribut
+  return DOMPurify.sanitize(props.animal.description);
+});
 </script>
 
-<style scoped>
-/* Vous pouvez personnaliser le style si nécessaire */
-</style>
