@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	{% include 'animal/index.html.twig'  with {'animals': animals}  %}
+
+
+	{% include 'animal/index.html.twig' with {'animals': animals, 'types': types, 'races': races} %}
 
 {% endblock %}
