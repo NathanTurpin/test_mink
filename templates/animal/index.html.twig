@@ -1,0 +1,10 @@
+{% block title %}Liste des Animaux
+{% endblock %}
+
+{% block body %}
+	{% if animals is not empty %}
+		<div {{ vue_component('Animals', { 'animals': animals } ) }}></div>
+	{% else %}
+		<p>Aucun animal trouvé.</p>
+	{% endif %}
+{% endblock %}
