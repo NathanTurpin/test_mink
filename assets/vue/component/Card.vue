@@ -2,11 +2,13 @@
   <div
     class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
   >
-    <div class="w-full h-16 bg-gray-200 flex justify-center items-center">
+    <div
+      class="w-full h-32 sm:h-40 md:h-48 lg:h-56 bg-gray-200 flex justify-center items-center"
+    >
       <img
         :src="'/uploads/images/' + animal.images"
         alt="Image de l'animal"
-        class="object-contain"
+        class="w-auto h-full object-cover"
       />
     </div>
 
