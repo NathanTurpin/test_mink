@@ -27,9 +27,14 @@
         <p class="text-sm text-gray-500">Race: {{ animal.race.name }}</p>
       </div>
 
-      <a href="#" class="text-blue-500 mt-4 inline-block"
-        >Voir les détails &raquo;</a
+      <a
+        href="tel:+33781975489"
+        class="text-white bg-blue-500 hover:bg-blue-600 rounded-md py-2 px-4 mt-4 inline-block sm:hidden"
       >
+        Appeler
+      </a>
+
+      <p class="text-blue-500 mt-4 hidden sm:block">+33781975489</p>
     </div>
   </div>
 </template>
